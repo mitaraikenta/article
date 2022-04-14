@@ -48,6 +48,65 @@
 
 ****
 
+よく分からんので一旦スルー
+
+### 公式動画でのアニメーション
+
+***
+
+公式が教えてくれたアニメーションは
+四角が大きくなったり小さくなったりする際に
+アニメーションを加え動いてる様に見える様にする（日本語へたですまん）
+```kotlin
+private enum class BoxState{
+    Small,
+    Large
+}
+
+@SuppressLint("UnusedTransitionTargetStateParameter")
+@Composable
+fun UpdateTransitionDemo(){
+    var boxstate by remember{ mutableStateOf(BoxState.Small)}
+    val transition = updateTransition(targetState = boxstate)
+    val color by transition.animateColor() { state ->
+        when(state){
+            BoxState.Small -> Blue
+            BoxState.Large -> Red
+        }
+    }
+
+    val size by transition.animateDp() {state ->
+        when(boxstate){
+            BoxState.Small -> 64.dp
+            BoxState.Large -> 128.dp
+        }
+    }
+
+    Column() {
+        Button(
+            onClick = {
+                boxstate = when(boxstate){
+                    BoxState.Small -> BoxState.Large
+                    BoxState.Large -> BoxState.Small
+                }
+            }
+        ){
+            Text("CHANGE COLOR")
+        }
+        Spacer(modifier = Modifier.height(size))
+
+        Box(
+            modifier = Modifier
+                .size(size)
+                .background(color)
+        )
+    }
+}
+```
+
+コード載せとく
+
+
 
 
 
