@@ -106,6 +106,14 @@ fun UpdateTransitionDemo(){
 
 コード載せとく
 
+### 4/15
+
+***
+
+このリンクにたどり着く
+
+https://zenn.dev/kaleidot725/articles/f66551da64669
+
 
 
 
